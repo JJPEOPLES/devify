@@ -143,15 +143,15 @@ const CourseDetailPage = () => {
                 <h2>Meet Your Instructor</h2>
                 <div className="instructor-info">
                   <div className="instructor-image">
-                    <img src="/images/instructors/default.jpg" alt={course.instructor} />
+                    <img src="/images/team/prime.jpg" alt={course.instructor} />
                   </div>
                   <div className="instructor-details">
                     <h3>{course.instructor}</h3>
-                    <p className="instructor-title">Senior Developer & Educator</p>
+                    <p className="instructor-title">Young Developer & Educator</p>
                     <p className="instructor-bio">
-                      An experienced developer with over 8 years of industry experience, 
-                      specializing in {course.title.split(' ')[0]} development. Passionate about teaching 
-                      and helping students achieve their coding goals.
+                      A 10-year-old full stack developer who started coding at age 7. Prime is passionate about making 
+                      coding accessible to everyone, especially young people. With expertise in {course.title.split(' ')[0]} 
+                      and other technologies, Prime created Devify to share knowledge and inspire the next generation of developers.
                     </p>
                   </div>
                 </div>

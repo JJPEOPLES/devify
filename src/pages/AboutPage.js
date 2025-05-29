@@ -25,11 +25,11 @@ const AboutPage = () => {
               
               <h2>Our Story</h2>
               <p>
-                Devify was founded in 2023 by a team of passionate developers and educators who saw a gap in 
-                the way programming was being taught. Traditional education often focuses too much on theory 
-                and not enough on practical, real-world applications. We set out to create a learning platform 
-                that balances theory with hands-on practice, helping students build a strong portfolio while 
-                they learn.
+                Devify was founded in 2023 by Prime, a 10-year-old full stack developer who is passionate about 
+                making coding accessible to everyone, especially young people. After learning to code at a very 
+                early age, Prime realized that many educational resources weren't designed with young learners in mind. 
+                This platform was created to provide a learning experience that's engaging and accessible for coders 
+                of all ages, with a special focus on helping kids discover the joy of programming.
               </p>
               
               <h2>Our Approach</h2>
@@ -76,51 +76,20 @@ const AboutPage = () => {
       
       <section className="team-section">
         <div className="container">
-          <h2 className="section-title">Meet Our Team</h2>
-          <p className="section-subtitle">The passionate people behind Devify</p>
+          <h2 className="section-title">Meet the Creator</h2>
+          <p className="section-subtitle">The young developer behind Devify</p>
           
-          <div className="team-grid">
+          <div className="team-grid single-member">
             <div className="team-member">
               <div className="member-image">
-                <img src="/images/team/member1.jpg" alt="Team Member" />
+                <img src="/images/team/prime.jpg" alt="Prime" />
               </div>
-              <h3 className="member-name">Alex Johnson</h3>
-              <p className="member-role">Founder & CEO</p>
+              <h3 className="member-name">Prime</h3>
+              <p className="member-role">Founder & Developer</p>
               <p className="member-bio">
-                Former senior developer at Google with 15+ years of experience in web development.
-              </p>
-            </div>
-            
-            <div className="team-member">
-              <div className="member-image">
-                <img src="/images/team/member2.jpg" alt="Team Member" />
-              </div>
-              <h3 className="member-name">Sarah Williams</h3>
-              <p className="member-role">Head of Education</p>
-              <p className="member-bio">
-                PhD in Computer Science with a passion for making complex concepts accessible.
-              </p>
-            </div>
-            
-            <div className="team-member">
-              <div className="member-image">
-                <img src="/images/team/member3.jpg" alt="Team Member" />
-              </div>
-              <h3 className="member-name">Michael Chen</h3>
-              <p className="member-role">Lead Developer</p>
-              <p className="member-bio">
-                Full stack developer specializing in React and Node.js ecosystems.
-              </p>
-            </div>
-            
-            <div className="team-member">
-              <div className="member-image">
-                <img src="/images/team/member4.jpg" alt="Team Member" />
-              </div>
-              <h3 className="member-name">Emily Rodriguez</h3>
-              <p className="member-role">Community Manager</p>
-              <p className="member-bio">
-                Dedicated to creating a supportive learning environment for all students.
+                A 10-year-old full stack developer who started coding at age 7. Prime is passionate about making 
+                coding accessible to everyone, especially young people. With expertise in HTML, CSS, JavaScript, 
+                React, and PHP, Prime created Devify to share knowledge and inspire the next generation of developers.
               </p>
             </div>
           </div>
