@@ -17,9 +17,13 @@ const CourseDetailPage = () => {
       setCourse(foundCourse);
       
       // Try to get saved progress from localStorage
-      const savedProgress = localStorage.getItem(`course_${id}_progress`);
-      if (savedProgress) {
-        setProgress(parseInt(savedProgress));
+      try {
+        const savedProgress = localStorage.getItem(`course_${id}_progress`);
+        if (savedProgress) {
+          setProgress(parseInt(savedProgress));
+        }
+      } catch (error) {
+        console.log('Could not access localStorage:', error);
       }
     }
   }, [id]);

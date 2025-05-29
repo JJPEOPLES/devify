@@ -1,7 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "CI= npm run build"
   publish = "build"
   functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18.18.0"
 
 [[redirects]]
   from = "/api/*"

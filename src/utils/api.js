@@ -5,8 +5,24 @@ const API_BASE_URL = process.env.NODE_ENV === 'production'
   ? '/api' 
   : 'http://localhost:8888/.netlify/functions';
 
+// Check if localStorage is available
+const isLocalStorageAvailable = () => {
+  try {
+    const test = 'test';
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 // Generate a unique user ID if one doesn't exist
 const getUserId = () => {
+  if (!isLocalStorageAvailable()) {
+    return 'anonymous';
+  }
+  
   let userId = localStorage.getItem('devify_user_id');
   if (!userId) {
     userId = 'user_' + Math.random().toString(36).substring(2, 15);
@@ -20,11 +36,14 @@ export const getProgress = async () => {
   try {
     // First try to get from local storage
     const localProgress = {};
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key.startsWith('course_') && key.endsWith('_progress')) {
-        const courseId = key.split('_')[1];
-        localProgress[courseId] = parseInt(localStorage.getItem(key));
+    
+    if (isLocalStorageAvailable()) {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('course_') && key.endsWith('_progress')) {
+          const courseId = key.split('_')[1];
+          localProgress[courseId] = parseInt(localStorage.getItem(key));
+        }
       }
     }
 
@@ -41,8 +60,10 @@ export const getProgress = async () => {
         Object.entries(data.progress).forEach(([courseId, progress]) => {
           if (!mergedProgress[courseId] || progress > mergedProgress[courseId]) {
             mergedProgress[courseId] = progress;
-            // Update local storage
-            localStorage.setItem(`course_${courseId}_progress`, progress.toString());
+            // Update local storage if available
+            if (isLocalStorageAvailable()) {
+              localStorage.setItem(`course_${courseId}_progress`, progress.toString());
+            }
           }
         });
         
@@ -62,8 +83,10 @@ export const getProgress = async () => {
 // Update progress for a specific course
 export const updateProgress = async (courseId, progress) => {
   try {
-    // Update local storage
-    localStorage.setItem(`course_${courseId}_progress`, progress.toString());
+    // Update local storage if available
+    if (isLocalStorageAvailable()) {
+      localStorage.setItem(`course_${courseId}_progress`, progress.toString());
+    }
     
     // Try to update API
     try {
@@ -93,8 +116,10 @@ export const updateProgress = async (courseId, progress) => {
 // Reset progress for a specific course
 export const resetProgress = async (courseId) => {
   try {
-    // Remove from local storage
-    localStorage.removeItem(`course_${courseId}_progress`);
+    // Remove from local storage if available
+    if (isLocalStorageAvailable()) {
+      localStorage.removeItem(`course_${courseId}_progress`);
+    }
     
     // Try to reset in API
     try {
