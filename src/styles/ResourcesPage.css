@@ -1,0 +1,158 @@
+.resources-page {
+  min-height: 100vh;
+}
+
+.resources-header {
+  background: linear-gradient(135deg, #4a6cf7 0%, #2541b2 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.resources-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.resources-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.resources-content {
+  margin-bottom: 3rem;
+}
+
+.resource-category {
+  margin-bottom: 3rem;
+}
+
+.category-title {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.category-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.resource-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.resource-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(74, 108, 247, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.resource-icon i {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.resource-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--dark-color);
+}
+
+.resource-description {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.resource-link i {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.resource-link:hover {
+  color: darken(#4a6cf7, 10%);
+}
+
+.resources-note {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.note-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.note-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+.note-content p {
+  color: var(--secondary-color);
+}
+
+@media (max-width: 992px) {
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .resources-header h1 {
+    font-size: 2rem;
+  }
+}

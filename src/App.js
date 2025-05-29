@@ -10,6 +10,10 @@ import Footer from './components/Footer';
 // Pages
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import CoursesPage from './pages/CoursesPage';
+import CourseDetailPage from './pages/CourseDetailPage';
+import ResourcesPage from './pages/ResourcesPage';
+import ProgressTrackingPage from './pages/ProgressTrackingPage';
 
 function App() {
   return (
@@ -20,7 +24,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            {/* Add more routes as needed */}
+            <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/courses/:id" element={<CourseDetailPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/track-progress" element={<ProgressTrackingPage />} />
             <Route path="*" element={<div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}>
               <h1>404 - Page Not Found</h1>
               <p>The page you are looking for does not exist.</p>

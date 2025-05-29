@@ -7,7 +7,7 @@ const courses = [
     duration: "4 weeks",
     instructor: "Sarah Johnson",
     image: "/images/courses/html-css.jpg",
-    price: 49.99,
+    price: "Free",
     rating: 4.8,
     topics: [
       "HTML5 Semantic Elements",
@@ -26,7 +26,7 @@ const courses = [
     duration: "6 weeks",
     instructor: "Michael Brown",
     image: "/images/courses/javascript.jpg",
-    price: 69.99,
+    price: "Free",
     rating: 4.7,
     topics: [
       "JavaScript Syntax",
@@ -45,7 +45,7 @@ const courses = [
     duration: "8 weeks",
     instructor: "Emily Chen",
     image: "/images/courses/react.jpg",
-    price: 89.99,
+    price: "Free",
     rating: 4.9,
     topics: [
       "React Components",
@@ -65,7 +65,7 @@ const courses = [
     duration: "8 weeks",
     instructor: "David Wilson",
     image: "/images/courses/nodejs.jpg",
-    price: 89.99,
+    price: "Free",
     rating: 4.6,
     topics: [
       "Node.js Basics",
@@ -85,7 +85,7 @@ const courses = [
     duration: "12 weeks",
     instructor: "Alex Rodriguez",
     image: "/images/courses/mern.jpg",
-    price: 129.99,
+    price: "Free",
     rating: 4.9,
     topics: [
       "Full Stack Architecture",
@@ -105,7 +105,7 @@ const courses = [
     duration: "6 weeks",
     instructor: "Jessica Lee",
     image: "/images/courses/sass.jpg",
-    price: 79.99,
+    price: "Free",
     rating: 4.7,
     topics: [
       "Sass Syntax",
@@ -125,7 +125,7 @@ const courses = [
     duration: "5 weeks",
     instructor: "Ryan Thompson",
     image: "/images/courses/typescript.jpg",
-    price: 74.99,
+    price: "Free",
     rating: 4.8,
     topics: [
       "TypeScript Basics",
@@ -145,7 +145,7 @@ const courses = [
     duration: "7 weeks",
     instructor: "Mark Anderson",
     image: "/images/courses/security.jpg",
-    price: 99.99,
+    price: "Free",
     rating: 4.9,
     topics: [
       "OWASP Top 10",

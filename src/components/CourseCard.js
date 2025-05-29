@@ -36,9 +36,9 @@ const CourseCard = ({ course }) => {
             </div>
             <span>{rating.toFixed(1)}</span>
           </div>
-          <div className="course-price">${price}</div>
+          <div className="course-price free">{price}</div>
         </div>
-        <Link to={`/courses/${id}`} className="btn btn-primary course-btn">View Course</Link>
+        <Link to={`/courses/${id}`} className="btn btn-primary course-btn">Start Learning</Link>
       </div>
     </div>
   );

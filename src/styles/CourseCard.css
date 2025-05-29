@@ -114,6 +114,14 @@
   color: var(--primary-color);
 }
 
+.course-price.free {
+  background-color: #e6f7ff;
+  color: #0099ff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
 .course-btn {
   width: 100%;
   text-align: center;
