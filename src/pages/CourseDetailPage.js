@@ -84,9 +84,19 @@ const CourseDetailPage = () => {
                   <div className="progress-bar" style={{ width: `${progress}%` }}></div>
                 </div>
                 <div className="progress-percentage">{progress}% Complete</div>
-                <button className="btn btn-primary" onClick={handleProgressUpdate}>
-                  Update Progress
-                </button>
+                <div className="progress-buttons">
+                  <button className="btn btn-primary" onClick={handleProgressUpdate}>
+                    Update Progress
+                  </button>
+                  {course.content && course.content.length > 0 && (
+                    <Link 
+                      to={`/courses/${course.id}/learn/0/0`}
+                      className="btn btn-success"
+                    >
+                      Start Learning
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -181,11 +191,13 @@ const CourseDetailPage = () => {
                       <ul className="lessons-list">
                         {section.lessons.map((lesson, lessonIndex) => (
                           <li className="lesson-item" key={lessonIndex}>
-                            <div className="lesson-info">
-                              <i className="fas fa-play-circle"></i>
-                              <span className="lesson-title">{lesson}</span>
-                            </div>
-                            <span className="lesson-duration">15-20 min</span>
+                            <Link to={`/courses/${course.id}/learn/${sectionIndex}/${lessonIndex}`} className="lesson-link">
+                              <div className="lesson-info">
+                                <i className="fas fa-play-circle"></i>
+                                <span className="lesson-title">{lesson}</span>
+                              </div>
+                              <span className="lesson-duration">15-20 min</span>
+                            </Link>
                           </li>
                         ))}
                       </ul>

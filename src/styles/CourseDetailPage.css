@@ -90,8 +90,23 @@
   text-align: right;
 }
 
+.progress-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .progress-card .btn {
-  width: 100%;
+  flex: 1;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
 }
 
 .course-tabs {
@@ -251,15 +266,24 @@
 }
 
 .lesson-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
   border-bottom: 1px solid #dee2e6;
 }
 
 .lesson-item:last-child {
   border-bottom: none;
+}
+
+.lesson-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.lesson-link:hover {
+  background-color: #f0f7ff;
 }
 
 .lesson-info {
