@@ -44,62 +44,194 @@ const LessonPage = () => {
     setLoading(false);
   }, [courseId, sectionIndex, lessonIndex]);
 
-  // This function would normally fetch the actual lesson content from a backend
-  // For now, we'll generate some placeholder content based on the lesson title
+  // Generate text-based lesson content based on the lesson title and course
   const getLessonContent = (courseId, sectionIdx, lessonIdx) => {
-    return (
-      <>
-        <div className="lesson-video">
-          <div className="video-placeholder">
-            <i className="fas fa-play-circle"></i>
-            <p>Video lesson would appear here</p>
-          </div>
-        </div>
+    const course = courses[courseId - 1];
+    const sectionTitle = course.content[sectionIdx].title;
+    const lessonTitle = course.content[sectionIdx].lessons[lessonIdx];
+    
+    // Generate different content based on the course and section
+    let mainContent = '';
+    let codeExample = '';
+    
+    // HTML & CSS Course
+    if (course.id === 1) {
+      if (sectionTitle.includes('HTML')) {
+        mainContent = `
+          <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It uses a series of elements or tags to define the structure of content.</p>
+          
+          <p>In this lesson on <strong>${lessonTitle}</strong>, we'll explore how to use HTML to create well-structured web content that browsers can understand and display correctly.</p>
+          
+          <h4>Understanding HTML Elements</h4>
+          <p>HTML elements are the building blocks of HTML pages. An HTML element is defined by a start tag, some content, and an end tag:</p>
+          
+          <p><code>&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</code></p>
+          
+          <p>Elements can be nested (placed inside other elements), which allows you to build complex structures from simple components.</p>
+        `;
         
-        <div className="lesson-text">
-          <h3>Lesson Content</h3>
-          <p>Welcome to this lesson on <strong>{courses[courseId - 1].content[sectionIdx].lessons[lessonIdx]}</strong>.</p>
-          <p>In this lesson, you'll learn the key concepts and practical applications of this topic. As a 10-year-old developer, I've designed this content to be accessible and engaging for learners of all ages.</p>
+        codeExample = `<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Web Page</title>
+</head>
+<body>
+  <h1>Welcome to My Website</h1>
+  <p>This is a paragraph of text.</p>
+  <ul>
+    <li>This is a list item</li>
+    <li>This is another list item</li>
+  </ul>
+</body>
+</html>`;
+      } else if (sectionTitle.includes('CSS')) {
+        mainContent = `
+          <p>CSS (Cascading Style Sheets) is the language used to style HTML documents. It describes how HTML elements should be displayed on screen, paper, or other media.</p>
           
-          <h4>Key Concepts</h4>
-          <ul>
-            <li>Understanding the fundamentals of {courses[courseId - 1].content[sectionIdx].lessons[lessonIdx]}</li>
-            <li>How to implement this in real-world projects</li>
-            <li>Best practices and common pitfalls</li>
-            <li>Hands-on exercises to reinforce learning</li>
-          </ul>
+          <p>In this lesson on <strong>${lessonTitle}</strong>, we'll learn how to use CSS to control the layout and appearance of web pages.</p>
           
-          <h4>Code Example</h4>
-          <div className="code-block">
-            <pre>
-              <code>
-                {`// Example code related to ${courses[courseId - 1].content[sectionIdx].lessons[lessonIdx]}
+          <h4>CSS Syntax</h4>
+          <p>A CSS rule consists of a selector and a declaration block. The selector points to the HTML element you want to style, and the declaration block contains one or more declarations separated by semicolons.</p>
+          
+          <p>Each declaration includes a CSS property name and a value, separated by a colon.</p>
+        `;
+        
+        codeExample = `/* CSS Syntax Example */
+selector {
+  property: value;
+  property: value;
+}
+
+/* Practical Example */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}`;
+      }
+    } 
+    // JavaScript Course
+    else if (course.id === 2) {
+      mainContent = `
+        <p>JavaScript is a programming language that allows you to implement complex features on web pages. It's an essential technology for creating interactive websites.</p>
+        
+        <p>In this lesson on <strong>${lessonTitle}</strong>, we'll explore key JavaScript concepts and how to apply them in real-world scenarios.</p>
+        
+        <h4>JavaScript Fundamentals</h4>
+        <p>JavaScript is a versatile language that runs in the browser, enabling dynamic content, interactive features, and much more. Understanding its core concepts is essential for web development.</p>
+      `;
+      
+      codeExample = `// JavaScript Example
+function greetUser(name) {
+  return "Hello, " + name + "! Welcome to JavaScript.";
+}
+
+// Using the function
+const username = "Learner";
+const message = greetUser(username);
+console.log(message);  // Outputs: Hello, Learner! Welcome to JavaScript.
+
+// Try changing the username and see what happens!`;
+    }
+    // React Course
+    else if (course.id === 3) {
+      mainContent = `
+        <p>React is a JavaScript library for building user interfaces, particularly single-page applications where you need a fast, interactive user experience.</p>
+        
+        <p>In this lesson on <strong>${lessonTitle}</strong>, we'll explore how React components work and how to build efficient UIs with React.</p>
+        
+        <h4>React Components</h4>
+        <p>Components are the building blocks of any React application. A component is a self-contained module that renders some output. Components can be nested inside other components to create complex applications from simple building blocks.</p>
+      `;
+      
+      codeExample = `// React Component Example
+import React from 'react';
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Alice" />
+      <Welcome name="Bob" />
+      <Welcome name="Charlie" />
+    </div>
+  );
+}
+
+export default App;`;
+    }
+    // Default content for other courses
+    else {
+      mainContent = `
+        <p>Welcome to this lesson on <strong>${lessonTitle}</strong>.</p>
+        
+        <p>In this comprehensive text-based lesson, you'll learn the key concepts and practical applications of this topic. As a 10-year-old developer, I've designed this content to be accessible and engaging for learners of all ages.</p>
+        
+        <h4>Learning Objectives</h4>
+        <p>By the end of this lesson, you will be able to:</p>
+        <ul>
+          <li>Understand the core principles of ${lessonTitle}</li>
+          <li>Apply these concepts in practical scenarios</li>
+          <li>Recognize common patterns and best practices</li>
+          <li>Solve problems related to this topic</li>
+        </ul>
+      `;
+      
+      codeExample = `// Example code related to ${lessonTitle}
 function exampleFunction() {
-  console.log("This is where specific code examples would be shown");
+  console.log("This demonstrates the concept we're learning");
   return "Learning is fun!";
 }
 
-// Try it yourself!
-exampleFunction();`}
-              </code>
-            </pre>
-          </div>
-          
-          <h4>Practice Exercise</h4>
-          <p>Now it's your turn to practice what you've learned:</p>
-          <ol>
-            <li>Open your code editor</li>
-            <li>Try implementing the concepts from this lesson</li>
-            <li>Experiment with different approaches</li>
-            <li>Share your work in our community forum!</li>
-          </ol>
-          
-          <div className="lesson-note">
-            <h4>Note from Prime</h4>
-            <p>I created this lesson based on my own learning experience. Remember, making mistakes is part of learning - don't be afraid to experiment and try new things!</p>
-          </div>
+// Try modifying this code to see what happens
+exampleFunction();`;
+    }
+    
+    return (
+      <div className="lesson-text">
+        <h3>{lessonTitle}</h3>
+        <div className="lesson-introduction" dangerouslySetInnerHTML={{ __html: mainContent }}></div>
+        
+        <h4>Code Example</h4>
+        <div className="code-block">
+          <pre>
+            <code>{codeExample}</code>
+          </pre>
         </div>
-      </>
+        
+        <h4>Practice Exercise</h4>
+        <p>Now it's your turn to practice what you've learned:</p>
+        <ol>
+          <li>Read through the lesson content carefully</li>
+          <li>Try the code examples in your own development environment</li>
+          <li>Modify the examples to see how changes affect the outcome</li>
+          <li>Complete the challenge below to test your understanding</li>
+        </ol>
+        
+        <div className="practice-challenge">
+          <h5>Challenge</h5>
+          <p>Based on what you've learned in this lesson, try to:</p>
+          <ul>
+            <li>Create your own version of the example</li>
+            <li>Add at least one new feature or modification</li>
+            <li>Test your solution to make sure it works as expected</li>
+          </ul>
+        </div>
+        
+        <div className="lesson-note">
+          <h4>Note from Prime</h4>
+          <p>I created this lesson based on my own learning experience. Remember, making mistakes is part of learning - don't be afraid to experiment and try new things! If you have questions, you can always ask in our community forum.</p>
+        </div>
+      </div>
     );
   };
 

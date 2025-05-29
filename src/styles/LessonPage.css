@@ -69,28 +69,12 @@
   padding: 3rem 0;
 }
 
-.lesson-video {
-  margin-bottom: 2rem;
-}
-
-.video-placeholder {
-  background-color: #f0f2f5;
-  border-radius: 8px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #666;
-}
-
-.video-placeholder i {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  color: #4a6cf7;
-}
-
 .lesson-text {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 2rem;
   line-height: 1.7;
 }
 
@@ -132,6 +116,35 @@
 .code-block pre {
   margin: 0;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.lesson-introduction {
+  margin-bottom: 2rem;
+}
+
+.lesson-introduction p {
+  margin-bottom: 1rem;
+}
+
+.lesson-introduction code {
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.practice-challenge {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.practice-challenge h5 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
 }
 
 .lesson-note {
