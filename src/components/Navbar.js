@@ -31,17 +31,12 @@ const Navbar = () => {
             <Link to="/resources" className="navbar-link">Resources</Link>
           </li>
           <li className="navbar-item">
-            <Link to="/blog" className="navbar-link">Blog</Link>
-          </li>
-          <li className="navbar-item">
             <Link to="/about" className="navbar-link">About</Link>
           </li>
+          <li className="navbar-item">
+            <Link to="/track-progress" className="navbar-link">My Progress</Link>
+          </li>
         </ul>
-        
-        <div className={`navbar-actions ${isMenuOpen ? 'active' : ''}`}>
-          <Link to="/login" className="btn btn-secondary">Login</Link>
-          <Link to="/signup" className="btn btn-primary">Sign Up</Link>
-        </div>
       </div>
     </nav>
   );
