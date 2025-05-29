@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import courses from '../data/courses';
+import { updateProgress } from '../utils/api';
 import '../styles/CourseDetailPage.css';
 
 const CourseDetailPage = () => {
@@ -27,16 +28,13 @@ const CourseDetailPage = () => {
     setActiveTab(tab);
   };
 
-  const handleProgressUpdate = () => {
+  const handleProgressUpdate = async () => {
     // Simulate progress update (in a real app, this would be more sophisticated)
     const newProgress = Math.min(progress + 10, 100);
     setProgress(newProgress);
     
-    // Save progress to localStorage
-    localStorage.setItem(`course_${id}_progress`, newProgress.toString());
-    
-    // In a real app, you would also send this to your PHP server
-    // Example: fetch('/api/update-progress.php', { method: 'POST', body: JSON.stringify({ courseId: id, progress: newProgress }) });
+    // Save progress using our API utility
+    await updateProgress(id, newProgress);
   };
 
   if (!course) {

@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import courses from '../data/courses';
+import { getProgress, resetProgress } from '../utils/api';
 import '../styles/ProgressTrackingPage.css';
 
 const ProgressTrackingPage = () => {
   const [courseProgress, setCourseProgress] = useState([]);
 
   useEffect(() => {
-    // Load progress data from localStorage
-    const loadProgress = () => {
+    // Load progress data from API and localStorage
+    const loadProgress = async () => {
+      const progressData = await getProgress();
+      
       const progress = courses.map(course => {
-        const savedProgress = localStorage.getItem(`course_${course.id}_progress`);
         return {
           id: course.id,
           title: course.title,
           image: course.image,
           level: course.level,
-          progress: savedProgress ? parseInt(savedProgress) : 0
+          progress: progressData[course.id] || 0
         };
       });
       
@@ -26,9 +28,9 @@ const ProgressTrackingPage = () => {
     loadProgress();
   }, []);
 
-  const resetProgress = (courseId) => {
-    // Remove progress from localStorage
-    localStorage.removeItem(`course_${courseId}_progress`);
+  const handleResetProgress = async (courseId) => {
+    // Reset progress using our API utility
+    await resetProgress(courseId);
     
     // Update state
     setCourseProgress(prevProgress => 
@@ -36,9 +38,6 @@ const ProgressTrackingPage = () => {
         course.id === courseId ? { ...course, progress: 0 } : course
       )
     );
-    
-    // In a real app, you would also send this to your PHP server
-    // Example: fetch('/api/reset-progress.php', { method: 'POST', body: JSON.stringify({ courseId }) });
   };
 
   // Group courses by progress status
@@ -93,7 +92,7 @@ const ProgressTrackingPage = () => {
                       <span className="progress-percentage">{course.progress}% Complete</span>
                       <button 
                         className="reset-button"
-                        onClick={() => resetProgress(course.id)}
+                        onClick={() => handleResetProgress(course.id)}
                       >
                         Reset Progress
                       </button>
@@ -130,7 +129,7 @@ const ProgressTrackingPage = () => {
                       <span className="progress-percentage">100% Complete</span>
                       <button 
                         className="reset-button"
-                        onClick={() => resetProgress(course.id)}
+                        onClick={() => handleResetProgress(course.id)}
                       >
                         Reset Progress
                       </button>
@@ -177,8 +176,9 @@ const ProgressTrackingPage = () => {
           <div className="note-content">
             <h3>Note About Progress Tracking</h3>
             <p>
-              Currently, your progress is stored locally in your browser. In a production environment, 
-              this data would be synchronized with our PHP server for persistent storage across devices.
+              Your progress is stored locally in your browser and synchronized with our server 
+              for persistent storage across devices. If you clear your browser data, you can 
+              still recover your progress by visiting this page again.
             </p>
           </div>
         </div>
